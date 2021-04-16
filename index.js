@@ -11,4 +11,11 @@ app.get('/test', (req, res) => {
   res.send('Hi!')
 })
 
+app.post('/tasks', (req, res) => {
+    const body = req.body
+
+    res.json(body)
+    res.end('Post')
+})
+
 app.listen(3000, () => console.log('Servidor pronto!'))
