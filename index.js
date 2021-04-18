@@ -18,14 +18,15 @@ app.use(express.json())
 
 const tasks = TaskModel(sequelize, DataTypes)
 
-
-
+app.get('', async (req, res) => {
+  res.redirect('/tasks');
+})
 
 
 app.get('/tasks', async (req, res) => {
   const tasksAll = await tasks.findAll();
   
-  res.render('tasks', { tarefas: tasksAll})
+  res.render('tasks', { tarefas: tasksAll});
 })
 
 app.post('/tasks', async (req, res) => {
@@ -43,7 +44,8 @@ app.get('/tasks/:id', async (req, res) => {
   const taskID = req.params.id;
   const resID = await tasks.findByPk(taskID);
 
-  res.json(resID);
+  res.render('task', { tarefa: resID })
+  // res.json(resID);
 })
 
 
