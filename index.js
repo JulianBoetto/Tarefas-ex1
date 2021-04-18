@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, json } = require('sequelize');
 
+// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
@@ -17,10 +18,14 @@ app.use(express.json())
 
 const tasks = TaskModel(sequelize, DataTypes)
 
+
+
+
+
 app.get('/tasks', async (req, res) => {
   const tasksAll = await tasks.findAll();
-
-  res.json({tasksAll})
+  
+  res.render('tasks', { tarefas: tasksAll})
 })
 
 app.post('/tasks', async (req, res) => {
