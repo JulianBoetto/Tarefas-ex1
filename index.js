@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
-const { Sequelize, DataTypes, json } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
+const { body,validationResult } = require('express-validator');
 
+const port = 3000
 
 app.set('view engine', 'ejs')
 
@@ -26,7 +28,7 @@ app.get('', async (req, res) => {
 app.get('/tasks', async (req, res) => {
   const tasksAll = await tasks.findAll();
   
-  res.render('tasks', { tarefas: tasksAll});
+  res.render('tasks', { tarefas: tasksAll, port: port});
 })
 
 app.post('/tasks', async (req, res) => {
@@ -44,8 +46,7 @@ app.get('/tasks/:id', async (req, res) => {
   const taskID = req.params.id;
   const resID = await tasks.findByPk(taskID);
 
-  res.render('task', { tarefa: resID })
-  // res.json(resID);
+  res.render('task', { tarefa: resID, port: port })
 })
 
 
@@ -66,17 +67,20 @@ app.delete('/tasks/:id', async (req, res) => {
   const taskID = req.params.id;
   const resID = await tasks.findByPk(taskID);
   try {
-    resID.destroy({ where: { id: taskID }})
-    res.send(`Foi eliminado o id: ${ taskID }`);
+    resID.destroy({ where: { id: taskID }});
+    // res.send(`Foi eliminado o id: ${ taskID }`);
+    res.render('delete', { id: taskID, port: port })
   } catch {
-    res.send(`O id: ${ taskID }, não foi encontrado.`)
+    // res.send(`O id: ${ taskID }, não foi encontrado.`)
+    res.render('delete', { id: taskID, port: port })
   }
   
 })
 
 
 
-app.listen(3000, () => {
-  console.log('Servidor pronto!')
+
+app.listen(port, () => {
+  console.log(`Servidor pronto no localhost:${ port }!`)
 })
 

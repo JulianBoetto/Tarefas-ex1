@@ -10,14 +10,19 @@
     <h1>TAREFAS</h1>
     <ul ><% tarefas.forEach(function(tarefa) { %>
         <li>
-            <a href="http://localhost:3000/tasks/<%= tarefa.id %>" onclick="getTask()">id: <%= tarefa.id %></a><br>
+            <a href="http://localhost:<%= port %>/tasks/<%= tarefa.id %>" onclick="getTask()">id: <%= tarefa.id %></a><br>
             Tarefa: <%= tarefa.description %><br>
             Feita: <%= tarefa.done %>
         </li><br>
-    <% }); %>
-    
+    <% }); %>    
     </ul>
+    
 
+    <form action="/team_name_url/" method="post">
+        <label for="team_name">Ingrese una tarefa: </label>
+        <input id="team_name" type="text" name="name_field" value="">
+        <input type="submit" value="Enviar">
+    </form>
     
 </body>
 </html>

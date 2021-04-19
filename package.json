@@ -17,6 +17,7 @@
     "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
+    "express-validator": "^6.10.0",
     "sqlite3": "^5.0.2"
   }
 }
