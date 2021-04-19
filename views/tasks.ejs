@@ -10,11 +10,14 @@
     <h1>TAREFAS</h1>
     <ul ><% tarefas.forEach(function(tarefa) { %>
         <li>
-            id: <%= tarefa.id %><br>
+            <a href="http://localhost:3000/tasks/<%= tarefa.id %>" onclick="getTask()">id: <%= tarefa.id %></a><br>
             Tarefa: <%= tarefa.description %><br>
             Feita: <%= tarefa.done %>
         </li><br>
     <% }); %>
+    
     </ul>
+
+    
 </body>
 </html>

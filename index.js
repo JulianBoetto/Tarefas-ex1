@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const { Sequelize, DataTypes, json } = require('sequelize');
 
-// app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
@@ -75,6 +75,8 @@ app.delete('/tasks/:id', async (req, res) => {
 })
 
 
+
 app.listen(3000, () => {
   console.log('Servidor pronto!')
 })
+
