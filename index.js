@@ -1,15 +1,18 @@
 const express = require('express')
 const app = express()
+const router = express.Router();
 const { Sequelize, DataTypes } = require('sequelize');
 const { body,validationResult } = require('express-validator');
 
 const port = 3000
+module.exports = router;
 
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
 
-const TaskModel = require('./models/task')
+const TaskModel = require('./models/task');
+const { Router } = require('express');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -77,6 +80,15 @@ app.delete('/tasks/:id', async (req, res) => {
   
 })
 
+// TEST
+
+router.get('/tasks', (req, res) => {
+
+})
+
+router.post('/tasks', (req, res) => {
+
+})
 
 
 
